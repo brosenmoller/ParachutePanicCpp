@@ -5,6 +5,10 @@
 class Player : public GameObject
 {
 public:
-	void Start() override;
-	void Update() override;
+	using GameObject::GameObject;
+
+	virtual void Start() override;
+	virtual void Update() override;
+private:
+	int speed;
 };

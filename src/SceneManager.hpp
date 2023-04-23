@@ -1,7 +1,8 @@
 #pragma once
 
-#include <unordered_set>
+#include <list>
 #include "GameObject.hpp"
+#include "GameObjects/Player.hpp"
 
 class SceneManager
 {
@@ -13,11 +14,11 @@ public:
 	void OnUpdate();
 	void OnRender();
 
-	GameObject* GetGameObjectByName(std::string name);
+	//GameObject GetGameObjectByName(std::string name);
 
 private:
 	sf::RenderWindow* window;
 
-	std::unordered_set<GameObject> UnInitializedGameObjects;
-	std::unordered_set<GameObject> ActiveGameObjects;
+	std::list<GameObject*> UnInitializedGameObjects;
+	std::list<GameObject*> ActiveGameObjects;
 };

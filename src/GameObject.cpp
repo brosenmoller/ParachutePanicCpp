@@ -18,9 +18,6 @@ GameObject::GameObject(std::string name, const char* textureSheetFilePath, sf::R
 	sprite = sf::Sprite(texture, spriteRect);
 }
 
-GameObject::~GameObject()
-{}
-
 Vector2* GameObject::GetPosition()
 {
 	return &position;
