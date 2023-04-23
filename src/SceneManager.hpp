@@ -9,16 +9,18 @@ class SceneManager
 public:
 
 	SceneManager(sf::RenderWindow* window);
-	~SceneManager();
+	~SceneManager() {}
 
 	void OnUpdate();
 	void OnRender();
 
-	//GameObject GetGameObjectByName(std::string name);
+	GameObject* GetGameObjectByName(std::string name);
 
 private:
 	sf::RenderWindow* window;
 
 	std::list<GameObject*> UnInitializedGameObjects;
 	std::list<GameObject*> ActiveGameObjects;
+	sf::Text* scoreText;
+	sf::Font mainFont;
 };

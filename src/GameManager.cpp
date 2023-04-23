@@ -10,12 +10,6 @@ GameManager::GameManager()
 
 	sceneManager = new SceneManager(window);
 
-	if (!mainFont.loadFromFile("assets/Roboto-Black.ttf"))
-	{
-		isRunning = false;
-		return;
-	}
-
 	isRunning = true;
 }
 

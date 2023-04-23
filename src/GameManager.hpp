@@ -23,5 +23,4 @@ private:
 	int frameCounter;
 	bool isRunning;
 	sf::RenderWindow* window;
-	sf::Font mainFont;
 };
