@@ -134,6 +134,8 @@
   <ItemGroup>
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\GameObjects\Enemy.cpp" />
+    <ClCompile Include="src\GameObjects\EnemySpawner.cpp" />
     <ClCompile Include="src\GameObjects\Player.cpp" />
     <ClCompile Include="src\LogManager.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -144,6 +146,8 @@
     <ClInclude Include="src\GameData.hpp" />
     <ClInclude Include="src\GameManager.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
+    <ClInclude Include="src\GameObjects\Enemy.hpp" />
+    <ClInclude Include="src\GameObjects\EnemySpawner.hpp" />
     <ClInclude Include="src\GameObjects\Player.hpp" />
     <ClInclude Include="src\LogManager.hpp" />
     <ClInclude Include="src\SceneManager.hpp" />

@@ -4,13 +4,13 @@
 #include "GameObject.hpp"
 #include "LogManager.hpp"
 #include "GameData.hpp"
-#include "SceneManager.hpp" 
+#include "SceneManager.hpp"
 
 class GameManager
 {
 public:
 	GameManager();
-	~GameManager();
+	~GameManager() {}
 
 	void handleEvents();
 	void update();

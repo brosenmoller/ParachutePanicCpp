@@ -2,15 +2,13 @@
 
 #include "../GameObject.hpp"
 
-class Player : public GameObject
+class Enemy : public GameObject
 {
-public:
 	using GameObject::GameObject;
 
 	virtual void Start() override;
 	virtual void Update() override;
 private:
 	int speed;
-	int timePerScorePoint;
-	sf::Clock clock;
+	int collisionRange;
 };

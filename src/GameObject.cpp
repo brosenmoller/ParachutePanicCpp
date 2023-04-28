@@ -1,10 +1,12 @@
 #include "GameObject.hpp"
+#include "SceneManager.hpp"
 
-GameObject::GameObject(std::string name, const char* textureSheetFilePath, sf::RenderWindow* window, Vector2 position)
+GameObject::GameObject(std::string name, const char* textureSheetFilePath, sf::RenderWindow* window, SceneManager* sceneManager, Vector2 position)
 {
 	this->position = position;
 	this->window = window;
 	this->name = name;
+	this->sceneManager = sceneManager;
 
 	this->scale = Vector2(4, 4);
 	this->rotation = 0;

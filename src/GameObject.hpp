@@ -4,6 +4,8 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+class SceneManager;
+
 class GameObject
 {
 protected:
@@ -12,13 +14,14 @@ protected:
 	float rotation;
 	std::string name;
 
+	SceneManager* sceneManager;
 	sf::RenderWindow* window;
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::IntRect spriteRect;
 
 public:
-	GameObject(std::string name, const char* textureSheetFilePath, sf::RenderWindow* window, Vector2 position = Vector2());
+	GameObject(std::string name, const char* textureSheetFilePath, sf::RenderWindow* window, SceneManager* sceneManager, Vector2 position = Vector2());
 	~GameObject() {}
 
 	Vector2* GetPosition();

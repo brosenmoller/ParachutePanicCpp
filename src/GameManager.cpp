@@ -5,7 +5,7 @@ SceneManager* sceneManager;
 GameManager::GameManager()
 {
 	frameCounter = 0;
-	window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Parachute Panic");
+	window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), GAME_NAME);
 	window->setFramerateLimit(FRAME_RATE);
 
 	sceneManager = new SceneManager(window);
@@ -13,30 +13,26 @@ GameManager::GameManager()
 	isRunning = true;
 }
 
-GameManager::~GameManager()
-{}
-
 void GameManager::handleEvents()
 {
 	sf::Event event;
 	while (window->pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
+		{
 			isRunning = false;
+		}
 	}
 }
 
 void GameManager::update()
 {
-	//frameCounter++;
-	//LogInfo(std::to_string(frameCounter).c_str());
-
 	sceneManager->OnUpdate();
 }
 
 void GameManager::render()
 {
-	window->clear();
+	window->clear(sf::Color(50, 50, 50, 255));
 	
 	sceneManager->OnRender();
 	
