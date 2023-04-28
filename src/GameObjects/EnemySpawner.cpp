@@ -4,8 +4,8 @@
 
 void EnemySpawner::Start()
 {
-	spawnDelay = 2500;
-	decreaseAmount = 200;
+	spawnDelay = 2000;
+	decreaseAmount = 300;
 	clock.restart();
 }
 
@@ -14,10 +14,12 @@ void EnemySpawner::Update()
 	if (clock.getElapsedTime().asMilliseconds() > spawnDelay)
 	{
 		clock.restart();
+		
 		decreaseAmount -= 10;
-		if (decreaseAmount < 20) decreaseAmount = 20;
+		if (decreaseAmount < 20) { decreaseAmount = 20; }
+
 		spawnDelay -= 50;
-		if (spawnDelay < 600) spawnDelay = 600;
+		if (spawnDelay < 500) { spawnDelay = 500; }
 
 
 		int amount = rand() % 6;
@@ -30,7 +32,7 @@ void EnemySpawner::Update()
 				"assets/Cars.png",
 				window,
 				sceneManager,
-				Vector2(enemyPosition, 0))
+				Vector2(enemyPosition, -50))
 			);
 		}
 	}

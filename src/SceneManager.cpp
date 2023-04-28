@@ -8,7 +8,7 @@ SceneManager::SceneManager(sf::RenderWindow* window)
 	mainFont.loadFromFile("assets/Roboto-Black.ttf");
 
 	scoreCount = 0;
-	playerLiveCount = 3;
+	gameOver = false;
 
 	scoreText = new sf::Text;
 	scoreText->setFont(mainFont);
@@ -17,13 +17,13 @@ SceneManager::SceneManager(sf::RenderWindow* window)
 	scoreText->setStyle(sf::Text::Bold);
 	scoreText->setPosition(sf::Vector2f(10, 0));
 
-	liveText = new sf::Text;
-	liveText->setFont(mainFont);
-	liveText->setString("0");
-	liveText->setCharacterSize(48);
-	liveText->setFillColor(sf::Color::Red);
-	liveText->setStyle(sf::Text::Bold);
-	liveText->setPosition(sf::Vector2f(SCREEN_WIDTH - 50, 0));
+	gameOverText = new sf::Text;
+	gameOverText->setFont(mainFont);
+	gameOverText->setString("Game Over");
+	gameOverText->setCharacterSize(100);
+	gameOverText->setFillColor(sf::Color::Red);
+	gameOverText->setStyle(sf::Text::Bold);
+	gameOverText->setPosition(sf::Vector2f(SCREEN_WIDTH / 5, SCREEN_HEIGHT / 10));
 
 	player = new Player("Player", "assets/Cars.png", window, this);
 	UnInitializedGameObjects.push_front(player);
@@ -33,6 +33,13 @@ SceneManager::SceneManager(sf::RenderWindow* window)
 
 void SceneManager::OnUpdate()
 {
+	if (gameOver) 
+	{
+
+		return; 
+	}
+
+
 	if (UnInitializedGameObjects.size() > 0)
 	{
 		for (GameObject* gameObject : UnInitializedGameObjects)
@@ -68,8 +75,11 @@ void SceneManager::OnRender()
 
 	scoreText->setString(std::to_string(scoreCount));
 	window->draw(*scoreText);
-	liveText->setString(std::to_string(playerLiveCount));
-	window->draw(*liveText);
+
+	if (gameOver)
+	{
+		window->draw(*gameOverText);
+	}
 }
 
 void SceneManager::InstantiateGameObject(GameObject* gameObject)

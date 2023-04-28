@@ -14,7 +14,7 @@ void Enemy::Update()
 	float distanceToPlayer = position.Distance(*sceneManager->player->GetPosition());
 	if (distanceToPlayer < collisionRange)
 	{
-		sceneManager->playerLiveCount--;
+		sceneManager->GameOver();
 		sceneManager->DestroyGameObject(this);
 	}
 }

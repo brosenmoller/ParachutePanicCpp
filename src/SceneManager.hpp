@@ -19,16 +19,17 @@ public:
 	GameObject* GetGameObjectByName(std::string name);
 	void DestroyGameObjectByName(std::string name);
 	void DestroyGameObject(GameObject* gameObject);
+	void GameOver() { gameOver = true; }
 	
 	int scoreCount;
-	int playerLiveCount;
 	Player* player;
 private:
+	bool gameOver;
 	sf::RenderWindow* window;
 
 	sf::Font mainFont;
 	sf::Text* scoreText;
-	sf::Text* liveText;
+	sf::Text* gameOverText;
 
 	std::list<GameObject*> UnInitializedGameObjects;
 	std::list<GameObject*> ActiveGameObjects;
