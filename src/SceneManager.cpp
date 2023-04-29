@@ -5,25 +5,29 @@ SceneManager::SceneManager(sf::RenderWindow* window)
 {
 	this->window = window;
 
-	mainFont.loadFromFile("assets/Roboto-Black.ttf");
+	mainFont.loadFromFile("assets/ARCADECLASSIC.ttf");
 
 	scoreCount = 0;
 	gameOver = false;
 
 	scoreText = new sf::Text;
 	scoreText->setFont(mainFont);
-	scoreText->setCharacterSize(48);
+	scoreText->setCharacterSize(50);
 	scoreText->setFillColor(sf::Color::White);
 	scoreText->setStyle(sf::Text::Bold);
-	scoreText->setPosition(sf::Vector2f(10, 0));
+	scoreText->setPosition(sf::Vector2f(25, 2));
 
 	gameOverText = new sf::Text;
 	gameOverText->setFont(mainFont);
 	gameOverText->setString("Game Over");
-	gameOverText->setCharacterSize(100);
+	gameOverText->setCharacterSize(120);
 	gameOverText->setFillColor(sf::Color::Red);
 	gameOverText->setStyle(sf::Text::Bold);
-	gameOverText->setPosition(sf::Vector2f(SCREEN_WIDTH / 5, SCREEN_HEIGHT / 10));
+	gameOverText->setPosition(sf::Vector2f(SCREEN_WIDTH / 6, SCREEN_HEIGHT / 10));
+
+	scoreBoardTexture.loadFromFile("assets/ScoreBoard.png");
+	scoreBoardSprite.setTexture(scoreBoardTexture);
+	scoreBoardSprite.setScale(sf::Vector2f(10, 10));
 
 	player = new Player("Player", "assets/Cars.png", window, this);
 	UnInitializedGameObjects.push_front(player);
@@ -72,6 +76,8 @@ void SceneManager::OnRender()
 	{
 		gameObject->Render();
 	}
+
+	window->draw(scoreBoardSprite);
 
 	scoreText->setString(std::to_string(scoreCount));
 	window->draw(*scoreText);

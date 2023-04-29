@@ -12,5 +12,6 @@ public:
 private:
 	int speed;
 	int timePerScorePoint;
-	sf::Clock clock;
+	sf::Clock scoreClock;
+	sf::Clock animationClock;
 };

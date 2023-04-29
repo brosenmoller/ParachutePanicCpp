@@ -7,10 +7,19 @@ GameManager::GameManager()
 	frameCounter = 0;
 	window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), GAME_NAME);
 	window->setFramerateLimit(FRAME_RATE);
+	
+	sf::Image windowIcon;
+	windowIcon.loadFromFile("assets/CarsIcon.png");
+
+	window->setIcon(windowIcon.getSize().x, windowIcon.getSize().y, windowIcon.getPixelsPtr());
 
 	sceneManager = new SceneManager(window);
 
 	isRunning = true;
+
+	backgroundTexture.loadFromFile("assets/Background.png");
+	backgroundSprite.setTexture(backgroundTexture);
+	backgroundSprite.setScale(sf::Vector2f(10, 10));
 }
 
 void GameManager::handleEvents()
@@ -32,7 +41,9 @@ void GameManager::update()
 
 void GameManager::render()
 {
-	window->clear(sf::Color(50, 50, 50, 255));
+	window->clear();
+
+	window->draw(backgroundSprite);
 	
 	sceneManager->OnRender();
 	

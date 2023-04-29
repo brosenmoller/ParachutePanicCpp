@@ -7,47 +7,51 @@ void Player::Start()
 	position.x = SCREEN_WIDTH / 2;
 	position.y = SCREEN_HEIGHT - 100;
 
-	speed = 10;
-	timePerScorePoint = 200;
+	speed = 8;
+	timePerScorePoint = 500;
 
 	LogInfo("Player Started");
 }
 
 void Player::Update()
 {
-	if (clock.getElapsedTime().asMilliseconds() > timePerScorePoint)
+	if (scoreClock.getElapsedTime().asMilliseconds() > timePerScorePoint)
 	{
-		clock.restart();
+		scoreClock.restart();
 		sceneManager->scoreCount++;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || 
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		position.x -= speed;
 		spriteRect.top = 16;
 		spriteRect.left = 48;
 		sprite.setTextureRect(spriteRect);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || 
+			 sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		position.x += speed;
 		spriteRect.top = 16;
 		spriteRect.left = 32;
-		sprite.setTextureRect(spriteRect); 
+		sprite.setTextureRect(spriteRect);
 	}
-	else 
+	else
 	{
-		spriteRect.top = 16; 
-		spriteRect.left = 16; 
+		spriteRect.top = 16;
+		spriteRect.left = 16;
 		sprite.setTextureRect(spriteRect);
 	}
 
-	if (position.x > SCREEN_WIDTH - 60)
+	position.y = SCREEN_HEIGHT - 100 + sin(animationClock.getElapsedTime().asMilliseconds() * .3f) * 1.5f;
+
+	if (position.x > SCREEN_WIDTH - 120)
 	{
-		position.x = SCREEN_WIDTH - 60;
+		position.x = SCREEN_WIDTH - 120;
 	}
-	else if (position.x < 0)
+	else if (position.x < 70)
 	{
-		position.x = 0;
+		position.x = 70;
 	}
 }

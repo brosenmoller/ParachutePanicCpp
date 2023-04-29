@@ -31,6 +31,9 @@ private:
 	sf::Text* scoreText;
 	sf::Text* gameOverText;
 
+	sf::Sprite scoreBoardSprite;
+	sf::Texture scoreBoardTexture;
+
 	std::list<GameObject*> UnInitializedGameObjects;
 	std::list<GameObject*> ActiveGameObjects;
 	std::list<GameObject*> GameObjectsToBeRemoved;

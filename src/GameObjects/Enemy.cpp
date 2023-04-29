@@ -4,7 +4,7 @@
 void Enemy::Start()
 {
 	speed = 4;
-	collisionRange = 50;
+	collisionRange = 48;
 }
 
 void Enemy::Update()
