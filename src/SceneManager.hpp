@@ -1,6 +1,7 @@
 #pragma once
 
 #include <list>
+#include <SFML/Audio.hpp>
 #include "GameData.hpp"
 #include "GameObject.hpp"
 #include "GameObjects/Player.hpp"
@@ -19,7 +20,7 @@ public:
 	GameObject* GetGameObjectByName(std::string name);
 	void DestroyGameObjectByName(std::string name);
 	void DestroyGameObject(GameObject* gameObject);
-	void GameOver() { gameOver = true; }
+	void GameOver();
 	
 	int scoreCount;
 	Player* player;
@@ -37,4 +38,10 @@ private:
 	std::list<GameObject*> UnInitializedGameObjects;
 	std::list<GameObject*> ActiveGameObjects;
 	std::list<GameObject*> GameObjectsToBeRemoved;
+
+	sf::Music highwayAmbience;
+	sf::SoundBuffer engineStartBuffer;
+	sf::Sound engineStartSound;
+	sf::SoundBuffer crashBuffer;
+	sf::Sound crashSound;
 };

@@ -3,18 +3,19 @@
 
 SceneManager::SceneManager(sf::RenderWindow* window)
 {
+	// --- Initializing Variables ---
 	this->window = window;
-
-	mainFont.loadFromFile("assets/ARCADECLASSIC.ttf");
 
 	scoreCount = 0;
 	gameOver = false;
+
+	// --- Setting up Text ---
+	mainFont.loadFromFile("assets/ARCADECLASSIC.ttf");
 
 	scoreText = new sf::Text;
 	scoreText->setFont(mainFont);
 	scoreText->setCharacterSize(50);
 	scoreText->setFillColor(sf::Color::White);
-	scoreText->setStyle(sf::Text::Bold);
 	scoreText->setPosition(sf::Vector2f(25, 2));
 
 	gameOverText = new sf::Text;
@@ -22,24 +23,34 @@ SceneManager::SceneManager(sf::RenderWindow* window)
 	gameOverText->setString("Game Over");
 	gameOverText->setCharacterSize(120);
 	gameOverText->setFillColor(sf::Color::Red);
-	gameOverText->setStyle(sf::Text::Bold);
 	gameOverText->setPosition(sf::Vector2f(SCREEN_WIDTH / 6, SCREEN_HEIGHT / 10));
 
 	scoreBoardTexture.loadFromFile("assets/ScoreBoard.png");
 	scoreBoardSprite.setTexture(scoreBoardTexture);
 	scoreBoardSprite.setScale(sf::Vector2f(10, 10));
 
+	// --- Sounds and Music ---
+	highwayAmbience.openFromFile("assets/Audio/Highway.wav");
+	highwayAmbience.play();
+
+	engineStartBuffer.loadFromFile("assets/Audio/MixKit-EngineStart.wav");
+	engineStartSound.setBuffer(engineStartBuffer);
+	engineStartSound.play();
+
+	crashBuffer.loadFromFile("assets/Audio/CarCrash.wav");
+	crashSound.setBuffer(crashBuffer);
+
+	// --- Setting up Gameobject ---
 	player = new Player("Player", "assets/Cars.png", window, this);
 	UnInitializedGameObjects.push_front(player);
 
-	UnInitializedGameObjects.push_front(new EnemySpawner("EnemySpawner", "assets/SlimeEnemy.png", window, this, Vector2(-100, -100)));
+	UnInitializedGameObjects.push_front(new EnemySpawner("EnemySpawner", "assets/Cars.png", window, this, Vector2(-100, -100)));
 }
 
 void SceneManager::OnUpdate()
 {
 	if (gameOver) 
 	{
-
 		return; 
 	}
 
@@ -120,4 +131,10 @@ void SceneManager::DestroyGameObjectByName(std::string name)
 void SceneManager::DestroyGameObject(GameObject* gameObject)
 {
 	GameObjectsToBeRemoved.push_front(gameObject);
+}
+
+void SceneManager::GameOver()
+{
+	gameOver = true;
+	crashSound.play();
 }

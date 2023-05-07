@@ -1,7 +1,5 @@
 #include "GameManager.hpp"
 
-SceneManager* sceneManager;
-
 GameManager::GameManager()
 {
 	frameCounter = 0;

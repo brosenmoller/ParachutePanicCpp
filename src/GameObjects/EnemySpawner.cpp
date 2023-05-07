@@ -43,7 +43,7 @@ void EnemySpawner::Update()
 				"assets/Cars.png",
 				window,
 				sceneManager,
-				Vector2(enemyXPosition, -50))
+				Vector2(enemyXPosition, -50 - (rand() % 30)))
 			);
 		}
 

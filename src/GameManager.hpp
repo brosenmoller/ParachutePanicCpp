@@ -22,6 +22,8 @@ public:
 private:
 	int frameCounter;
 	bool isRunning;
+
+	SceneManager* sceneManager;
 	sf::RenderWindow* window;
 	sf::Sprite backgroundSprite;
 	sf::Texture backgroundTexture;

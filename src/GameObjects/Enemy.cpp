@@ -3,8 +3,8 @@
 
 void Enemy::Start()
 {
-	speed = 4;
-	collisionRange = 48;
+	speed = 3 + (rand() % 2);
+	collisionRange = 45;
 }
 
 void Enemy::Update()
@@ -15,6 +15,10 @@ void Enemy::Update()
 	if (distanceToPlayer < collisionRange)
 	{
 		sceneManager->GameOver();
+	}
+
+	if (position.y > 800)
+	{
 		sceneManager->DestroyGameObject(this);
 	}
 }
