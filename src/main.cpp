@@ -9,12 +9,12 @@ int main(int argc, char* argv[])
 
 	while (gameManager->getIsRunning())
 	{
-		gameManager->handleEvents();
-		gameManager->update();
-		gameManager->render();
+		gameManager->HandleEvents();
+		gameManager->Update();
+		gameManager->Render();
 	}
 
-	gameManager->clean();
+	gameManager->Clean();
 
 	return 0;
 }

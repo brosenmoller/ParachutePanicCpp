@@ -7,10 +7,12 @@
 #include "GameObjects/Player.hpp"
 #include "GameObjects/Enemy.hpp"
 
+class GameManager;
+
 class SceneManager
 {
 public:
-	SceneManager(sf::RenderWindow* window);
+	SceneManager(sf::RenderWindow* window, GameManager* gameManager, sf::Font* mainFont);
 	~SceneManager() {}
 
 	void OnUpdate();
@@ -28,7 +30,9 @@ private:
 	bool gameOver;
 	sf::RenderWindow* window;
 
-	sf::Font mainFont;
+	GameManager* gameManager;
+
+	sf::Font* mainFont;
 	sf::Text* scoreText;
 	sf::Text* gameOverText;
 

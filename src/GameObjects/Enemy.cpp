@@ -3,7 +3,7 @@
 
 void Enemy::Start()
 {
-	speed = 3 + (rand() % 2);
+	speed = 7 + (rand() % 2);
 	collisionRange = 45;
 }
 
@@ -17,7 +17,7 @@ void Enemy::Update()
 		sceneManager->GameOver();
 	}
 
-	if (position.y > 800)
+	if (position.y > SCREEN_HEIGHT)
 	{
 		sceneManager->DestroyGameObject(this);
 	}

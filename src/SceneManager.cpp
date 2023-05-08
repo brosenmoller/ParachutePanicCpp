@@ -1,25 +1,26 @@
 #include "SceneManager.hpp"
 #include "GameObjects/EnemySpawner.hpp"
+#include "GameManager.hpp"
 
-SceneManager::SceneManager(sf::RenderWindow* window)
+SceneManager::SceneManager(sf::RenderWindow* window, GameManager* gameManager, sf::Font* mainFont)
 {
 	// --- Initializing Variables ---
 	this->window = window;
+	this->gameManager = gameManager;
+	this->mainFont = mainFont;
 
 	scoreCount = 0;
 	gameOver = false;
 
 	// --- Setting up Text ---
-	mainFont.loadFromFile("assets/ARCADECLASSIC.ttf");
-
 	scoreText = new sf::Text;
-	scoreText->setFont(mainFont);
+	scoreText->setFont(*mainFont);
 	scoreText->setCharacterSize(50);
 	scoreText->setFillColor(sf::Color::White);
 	scoreText->setPosition(sf::Vector2f(25, 2));
 
 	gameOverText = new sf::Text;
-	gameOverText->setFont(mainFont);
+	gameOverText->setFont(*mainFont);
 	gameOverText->setString("Game Over");
 	gameOverText->setCharacterSize(120);
 	gameOverText->setFillColor(sf::Color::Red);
@@ -49,12 +50,7 @@ SceneManager::SceneManager(sf::RenderWindow* window)
 
 void SceneManager::OnUpdate()
 {
-	if (gameOver) 
-	{
-		return; 
-	}
-
-
+	// --- Initialising GameObjects ---
 	if (UnInitializedGameObjects.size() > 0)
 	{
 		for (GameObject* gameObject : UnInitializedGameObjects)
@@ -63,18 +59,17 @@ void SceneManager::OnUpdate()
 			ActiveGameObjects.push_front(gameObject);
 		}
 	}
-
 	UnInitializedGameObjects.clear();
 
+	// --- Removing GameObjects ---
 	for (GameObject* gameObject : GameObjectsToBeRemoved)
 	{
 		ActiveGameObjects.remove(gameObject);
 		delete gameObject;
 	}
-
 	GameObjectsToBeRemoved.clear();
 
-
+	// --- Updating GameObjects ---
 	for (GameObject* gameObject : ActiveGameObjects)
 	{
 		gameObject->Update();
@@ -137,4 +132,5 @@ void SceneManager::GameOver()
 {
 	gameOver = true;
 	crashSound.play();
+	gameManager->GameOver(scoreCount);
 }

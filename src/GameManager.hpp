@@ -12,19 +12,38 @@ public:
 	GameManager();
 	~GameManager() {}
 
-	void handleEvents();
-	void update();
-	void render();
-	void clean();
+	void HandleEvents();
+	void Update();
+	void Render();
+	void Clean();
+
+	void GameOver(int score);
 
 	bool getIsRunning() { return isRunning; }
 
 private:
-	int frameCounter;
 	bool isRunning;
+	bool gameOver;
 
 	SceneManager* sceneManager;
 	sf::RenderWindow* window;
+
+	sf::Font mainFont;
+	sf::Text* finalScoreText;
+	sf::Text* highScoreText;
+	sf::Text* continueText;
+	sf::Clock continueTextFlickerClock;
+	bool drawContinueText;
+	int continueTextFlickerEnabledDelay;
+	int continueTextFlickerDisabledDelay;
+
 	sf::Sprite backgroundSprite;
 	sf::Texture backgroundTexture;
+	sf::IntRect backgroundTextureRect;
+	int backgroundScrollSpeed;
+
+	int score;
+	int highScore;
+
+	std::string saveFilePath;
 };
