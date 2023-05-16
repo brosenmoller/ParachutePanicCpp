@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include <list>
 #include <SFML/Audio.hpp>
 #include "GameData.hpp"
@@ -17,6 +18,7 @@ public:
 
 	void OnUpdate();
 	void OnRender();
+	void Clean();
 	
 	void InstantiateGameObject(GameObject* gameObject);
 	GameObject* GetGameObjectByName(std::string name);
@@ -39,9 +41,9 @@ private:
 	sf::Sprite scoreBoardSprite;
 	sf::Texture scoreBoardTexture;
 
-	std::list<GameObject*> UnInitializedGameObjects;
 	std::list<GameObject*> ActiveGameObjects;
-	std::list<GameObject*> GameObjectsToBeRemoved;
+	std::vector<GameObject*> UnInitializedGameObjects;
+	std::vector<GameObject*> GameObjectsToBeRemoved;
 
 	sf::Music highwayAmbience;
 	sf::SoundBuffer engineStartBuffer;

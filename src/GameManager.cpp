@@ -143,6 +143,7 @@ void GameManager::Render()
 void GameManager::Clean()
 {
 	window->close();
+	sceneManager->Clean();
 
 	LogInfo("Game Terminated");
 }

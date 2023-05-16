@@ -11,6 +11,10 @@ GameObject::GameObject(std::string name, const char* textureSheetFilePath, sf::R
 	this->scale = Vector2(4, 4);
 	this->rotation = 0;
 
+	this->forceDirection = Vector2(0, 0);
+	this->forceMagnitude = 0;
+	this->mass = 0;
+
 	spriteRect.height = 16;
 	spriteRect.width = 16;
 	spriteRect.top = 0;
@@ -42,4 +46,27 @@ void GameObject::Render()
 	sprite.setPosition(sf::Vector2f(position.x, position.y));
 
 	window->draw(sprite);
+}
+
+void GameObject::UpdatePhysics()
+{
+	float acceleration = forceMagnitude / mass;
+
+	Vector2 displacement = Vector2(
+		0.5f * acceleration * pow(FRAME_TIME, 2),
+		0.5f * acceleration * pow(FRAME_TIME, 2)
+	);
+
+	position.x += displacement.x;
+	position.y += displacement.y;
+}
+
+void GameObject::SetForce(const Vector2& forceVector)
+{
+	
+}
+
+void GameObject::AddForce(const Vector2& forceVector)
+{
+
 }

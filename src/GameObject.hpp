@@ -1,6 +1,7 @@
 #pragma once
 #include "Vector2.hpp"
 #include "LogManager.hpp"
+#include "GameData.hpp"
 #include <string>
 #include <SFML/Graphics.hpp>
 
@@ -33,4 +34,17 @@ public:
 	void Render();
 
 	std::string GetName() { return name; }
+
+// Physics System
+private:
+	float forceMagnitude;
+	Vector2 forceDirection;
+	float mass;
+
+protected:
+	void UpdatePhysics();
+
+public:
+	void SetForce(const Vector2& forceVector);
+	void AddForce(const Vector2& forceVector);
 };

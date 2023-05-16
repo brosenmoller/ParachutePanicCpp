@@ -2,7 +2,7 @@
 
 #include "../GameObject.hpp"
 #include "Enemy.hpp"
-#include <list>
+#include <vector>
 
 class EnemySpawner : public GameObject
 {
@@ -18,6 +18,6 @@ private:
 	int decreaseAmount;
 	int minimumAmountOfCars;
 
-	std::list<int> enemyPositionList;
+	std::vector<int> enemyPositionList;
 	bool IsValidPosition(int enemyPosition);
 };

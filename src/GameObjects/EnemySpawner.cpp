@@ -6,7 +6,7 @@ void EnemySpawner::Start()
 {
 	spawnDelay = 2000;
 	decreaseAmount = 200;
-	minimumAmountOfCars = 1;
+	minimumAmountOfCars = 2;
 	clock.restart();
 }
 
@@ -22,7 +22,6 @@ void EnemySpawner::Update()
 		spawnDelay -= decreaseAmount;
 		if (spawnDelay < 600) { spawnDelay = 600; }
 
-
 		int amount = rand() % 5;
 		amount += minimumAmountOfCars;
 
@@ -36,7 +35,7 @@ void EnemySpawner::Update()
 				enemyXPosition += 70;
 			}
 
-			enemyPositionList.push_front(enemyXPosition);
+			enemyPositionList.push_back(enemyXPosition);
 
 			sceneManager->InstantiateGameObject(new Enemy(
 				"Enemy " + std::to_string(i),

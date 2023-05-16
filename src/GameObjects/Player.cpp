@@ -6,6 +6,7 @@ void Player::Start()
 {
 	position.x = SCREEN_WIDTH / 2;
 	position.y = SCREEN_HEIGHT - 100;
+	spriteRect.top = 16;
 
 	speed = 8;
 	timePerScorePoint = 500;
@@ -25,7 +26,7 @@ void Player::Update()
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		position.x -= speed;
-		spriteRect.top = 16;
+
 		spriteRect.left = 48;
 		sprite.setTextureRect(spriteRect);
 	}
@@ -33,13 +34,12 @@ void Player::Update()
 			 sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		position.x += speed;
-		spriteRect.top = 16;
+
 		spriteRect.left = 32;
 		sprite.setTextureRect(spriteRect);
 	}
 	else
 	{
-		spriteRect.top = 16;
 		spriteRect.left = 16;
 		sprite.setTextureRect(spriteRect);
 	}

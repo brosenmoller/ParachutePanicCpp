@@ -1,11 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include "GameManager.hpp"
 
-GameManager* gameManager = nullptr;
-
-int main(int argc, char* argv[])
+int main()
 {
-	gameManager = new GameManager();
+	GameManager* gameManager = new GameManager();
 
 	while (gameManager->getIsRunning())
 	{

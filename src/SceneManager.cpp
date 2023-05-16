@@ -41,11 +41,11 @@ SceneManager::SceneManager(sf::RenderWindow* window, GameManager* gameManager, s
 	crashBuffer.loadFromFile("assets/Audio/CarCrash.wav");
 	crashSound.setBuffer(crashBuffer);
 
-	// --- Setting up Gameobject ---
+	// --- Setting up Gameobjects ---
 	player = new Player("Player", "assets/Cars.png", window, this);
-	UnInitializedGameObjects.push_front(player);
+	UnInitializedGameObjects.push_back(player);
 
-	UnInitializedGameObjects.push_front(new EnemySpawner("EnemySpawner", "assets/Cars.png", window, this, Vector2(-100, -100)));
+	UnInitializedGameObjects.push_back(new EnemySpawner("EnemySpawner", "assets/Cars.png", window, this, Vector2(-100, -100)));
 }
 
 void SceneManager::OnUpdate()
@@ -94,9 +94,16 @@ void SceneManager::OnRender()
 	}
 }
 
+void SceneManager::Clean()
+{
+	highwayAmbience.stop();
+	engineStartSound.stop();
+	crashSound.stop();
+}
+
 void SceneManager::InstantiateGameObject(GameObject* gameObject)
 {
-	UnInitializedGameObjects.push_front(gameObject);
+	UnInitializedGameObjects.push_back(gameObject);
 }
 
 GameObject* SceneManager::GetGameObjectByName(std::string name)
@@ -125,7 +132,7 @@ void SceneManager::DestroyGameObjectByName(std::string name)
 
 void SceneManager::DestroyGameObject(GameObject* gameObject)
 {
-	GameObjectsToBeRemoved.push_front(gameObject);
+	GameObjectsToBeRemoved.push_back(gameObject);
 }
 
 void SceneManager::GameOver()
