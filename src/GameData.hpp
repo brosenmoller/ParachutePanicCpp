@@ -6,6 +6,7 @@ const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
 const int FRAME_RATE = 60;
-const float FRAME_TIME = 1 / FRAME_RATE;
+const float FRAME_TIME = 1 / (float)FRAME_RATE;
 
-const int FRICTION_COEFFICIENT = 1;
+const int FRICTION_COEFFICIENT = 50;
+const float GRAVITY_CONSTANT = 9.81f;

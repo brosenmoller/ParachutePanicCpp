@@ -19,7 +19,7 @@ public:
 
 	void GameOver(int score);
 
-	bool getIsRunning() { return isRunning; }
+	bool GetIsRunning() { return isRunning; }
 
 private:
 	bool isRunning;

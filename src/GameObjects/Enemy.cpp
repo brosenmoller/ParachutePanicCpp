@@ -11,7 +11,7 @@ void Enemy::Update()
 {
 	position.y += speed;
 
-	float distanceToPlayer = position.Distance(*sceneManager->player->GetPosition());
+	float distanceToPlayer = position.Distance(sceneManager->player->GetPosition());
 	if (distanceToPlayer < collisionRange)
 	{
 		sceneManager->GameOver();

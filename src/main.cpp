@@ -5,7 +5,7 @@ int main()
 {
 	GameManager* gameManager = new GameManager();
 
-	while (gameManager->getIsRunning())
+	while (gameManager->GetIsRunning())
 	{
 		gameManager->HandleEvents();
 		gameManager->Update();

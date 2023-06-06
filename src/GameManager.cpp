@@ -23,7 +23,7 @@ GameManager::GameManager()
 	}
 
 	std::string highScoreString;
-	while(std::getline(highScoreFileInput, highScoreString))
+	while (std::getline(highScoreFileInput, highScoreString));
 
 	highScoreFileInput.close();
 
@@ -117,6 +117,7 @@ void GameManager::Render()
 		window->draw(*finalScoreText);
 		window->draw(*highScoreText);
 
+		// Render Flickering continue text
 		if (drawContinueText)
 		{
 			window->draw(*continueText);

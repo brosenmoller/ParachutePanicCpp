@@ -11,20 +11,30 @@ public:
 	Vector2(float x = 0, float y = 0);
 	~Vector2() {}
 
-	bool operator == (const Vector2& otherVector);
-	bool operator != (const Vector2& otherVector);
+	const static Vector2 Right() { return Vector2(1, 0); }
+	const static Vector2 Left() { return Vector2(-1, 0); }
+	const static Vector2 Zero() { return Vector2(0, 0); }
 
-	Vector2& operator + (const Vector2& otherVector);
-	Vector2& operator - (const Vector2& otherVector);
+	bool operator == (const Vector2& otherVector) const;
+	bool operator != (const Vector2& otherVector) const;
 
-	Vector2 Normalized();
-	void Normalize();
+	Vector2 operator + (const Vector2& otherVector) const;
+	Vector2 operator - (const Vector2& otherVector) const;
+	Vector2 operator * (const float& scalar) const;
+	Vector2& operator += (const Vector2& otherVector);
+	Vector2& operator -= (const Vector2& otherVector);
 
-	float Distance(const Vector2& otherVector);
-	float SqrDistance(const Vector2& othervector);
+	Vector2 Normalized() const;
+	Vector2& Normalize();
 
-	float DotProduct(const Vector2& othervector);
+	Vector2 Inversed() const;
+	Vector2& Inverse();
 
-	float Magnitude();
-	float SqrMagnitude();
+	float Distance(const Vector2& otherVector) const;
+	float SqrDistance(const Vector2& othervector) const;
+
+	float DotProduct(const Vector2& othervector) const;
+
+	float Magnitude() const;
+	float SqrMagnitude() const;
 };

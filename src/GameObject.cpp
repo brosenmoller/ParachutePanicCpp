@@ -12,8 +12,9 @@ GameObject::GameObject(std::string name, const char* textureSheetFilePath, sf::R
 	this->rotation = 0;
 
 	this->forceDirection = Vector2(0, 0);
+	this->velocity = Vector2(0, 0);
 	this->forceMagnitude = 0;
-	this->mass = 0;
+	this->mass = 10;
 
 	spriteRect.height = 16;
 	spriteRect.width = 16;
@@ -24,14 +25,14 @@ GameObject::GameObject(std::string name, const char* textureSheetFilePath, sf::R
 	sprite = sf::Sprite(texture, spriteRect);
 }
 
-Vector2* GameObject::GetPosition()
+Vector2 GameObject::GetPosition()
 {
-	return &position;
+	return position;
 }
 
-Vector2* GameObject::GetScale()
+Vector2 GameObject::GetScale()
 {
-	return &scale;
+	return scale;
 }
 
 float GameObject::GetRotation()
@@ -48,25 +49,49 @@ void GameObject::Render()
 	window->draw(sprite);
 }
 
+void GameObject::InitializePhysics()
+{
+	gravityForce = GRAVITY_CONSTANT * mass;
+}
+
 void GameObject::UpdatePhysics()
 {
-	float acceleration = forceMagnitude / mass;
+	float forceResitance = gravityForce * FRICTION_COEFFICIENT;
 
-	Vector2 displacement = Vector2(
-		0.5f * acceleration * pow(FRAME_TIME, 2),
-		0.5f * acceleration * pow(FRAME_TIME, 2)
-	);
+	if (forceMagnitude < forceResitance && velocity != Vector2::Zero())
+	{
+		forceDirection = velocity.Normalized();
+	}
 
+	float forceResulting = forceMagnitude - forceResitance;
+	float acceleration = forceResulting / mass;
+	
+	velocity.x += acceleration * FRAME_TIME * forceDirection.x;
+	velocity.y += acceleration * FRAME_TIME * forceDirection.y;
+	
+	Vector2 displacement = velocity * FRAME_TIME;
+	
 	position.x += displacement.x;
 	position.y += displacement.y;
+
+	//LogInfo("Force Resistance: " + std::to_string(forceResitance));
+	//LogInfo("Force Resulting: " + std::to_string(forceResitance));
+	//LogInfo("Acceleration: " + std::to_string(forceResitance));
+	//LogInfo("FRAME_TIME: " + std::to_string(FRAME_TIME));
+	//LogInfo("forceDirection X: " + std::to_string(forceDirection.x));
+	//LogInfo("Velocity X: " + std::to_string(velocity.x));
+	//LogInfo("Deplacement X: " + std::to_string(displacement.x));
+	//LogInfo("Position X: " + std::to_string(position.x));
 }
 
 void GameObject::SetForce(const Vector2& forceVector)
 {
-	
+	forceMagnitude = forceVector.Magnitude();
+	forceDirection = forceVector.Normalized();
 }
 
 void GameObject::AddForce(const Vector2& forceVector)
 {
-
+	forceDirection = (forceVector.Normalized() + forceDirection).Normalized();
+	forceMagnitude = forceDirection.Magnitude();
 }

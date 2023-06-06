@@ -23,10 +23,9 @@ protected:
 
 public:
 	GameObject(std::string name, const char* textureSheetFilePath, sf::RenderWindow* window, SceneManager* sceneManager, Vector2 position = Vector2());
-	~GameObject() {}
 
-	Vector2* GetPosition();
-	Vector2* GetScale();
+	Vector2 GetPosition();
+	Vector2 GetScale();
 	float GetRotation();
 
 	virtual void Start() {}
@@ -37,12 +36,15 @@ public:
 
 // Physics System
 private:
+	Vector2 velocity;
 	float forceMagnitude;
 	Vector2 forceDirection;
-	float mass;
+	float gravityForce;
 
 protected:
+	float mass;
 	void UpdatePhysics();
+	void InitializePhysics();
 
 public:
 	void SetForce(const Vector2& forceVector);

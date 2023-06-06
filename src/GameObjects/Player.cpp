@@ -8,14 +8,17 @@ void Player::Start()
 	position.y = SCREEN_HEIGHT - 100;
 	spriteRect.top = 16;
 
-	speed = 8;
+	speed = 50000;
+	mass = 50;
 	timePerScorePoint = 500;
 
-	LogInfo("Player Started");
+	InitializePhysics();
 }
 
 void Player::Update()
 {
+	UpdatePhysics();
+
 	if (scoreClock.getElapsedTime().asMilliseconds() > timePerScorePoint)
 	{
 		scoreClock.restart();
@@ -25,7 +28,8 @@ void Player::Update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || 
 		sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		position.x -= speed;
+		SetForce(Vector2::Left() * speed);
+		//position.x -= speed;
 
 		spriteRect.left = 48;
 		sprite.setTextureRect(spriteRect);
@@ -33,13 +37,16 @@ void Player::Update()
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || 
 			 sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		position.x += speed;
+		SetForce(Vector2::Right() * speed);
+		//position.x += speed;
 
 		spriteRect.left = 32;
 		sprite.setTextureRect(spriteRect);
 	}
 	else
 	{
+		SetForce(Vector2::Zero());
+
 		spriteRect.left = 16;
 		sprite.setTextureRect(spriteRect);
 	}
