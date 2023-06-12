@@ -22,7 +22,7 @@ void EnemySpawner::Update()
 		spawnDelay -= decreaseAmount;
 		if (spawnDelay < 600) { spawnDelay = 600; }
 
-		int amount = rand() % 5;
+		int amount = rand() % 4;
 		amount += minimumAmountOfCars;
 
 		for (int i = 0; i < amount; i++)

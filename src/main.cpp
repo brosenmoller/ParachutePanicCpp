@@ -3,6 +3,8 @@
 
 int main()
 {
+	srand(time(NULL));
+
 	GameManager* gameManager = new GameManager();
 
 	while (gameManager->GetIsRunning())
