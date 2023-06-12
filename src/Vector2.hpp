@@ -13,6 +13,8 @@ public:
 
 	const static Vector2 Right() { return Vector2(1, 0); }
 	const static Vector2 Left() { return Vector2(-1, 0); }
+	const static Vector2 Up() { return Vector2(0, -1); }
+	const static Vector2 Down() { return Vector2(0, 1); }
 	const static Vector2 Zero() { return Vector2(0, 0); }
 
 	bool operator == (const Vector2& otherVector) const;

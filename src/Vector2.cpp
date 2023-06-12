@@ -82,7 +82,6 @@ Vector2& Vector2::Inverse()
 	return *this;
 }
 
-
 float Vector2::Distance(const Vector2& otherVector) const
 {
 	return sqrt(pow(otherVector.x - x, 2) + pow(otherVector.y - y, 2));

@@ -6,11 +6,11 @@
 class PhysicsObject : public GameObject 
 {
 private:
-	Vector2 velocity;
 	float forceMagnitude;
 	Vector2 forceDirection;
 
 protected:
+	Vector2 velocity;
 	float mass;
 	void UpdatePhysics();
 
@@ -19,5 +19,4 @@ public:
 
 	void SetForce(const Vector2& forceVector);
 	void AddForce(const Vector2& forceVector);
-
 };

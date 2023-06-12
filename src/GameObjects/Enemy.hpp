@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../GameObject.hpp"
+#include "../PhysicsObject.hpp"
 
-class Enemy : public GameObject
+class Enemy : public PhysicsObject
 {
-	using GameObject::GameObject;
+	using PhysicsObject::PhysicsObject;
 
 	virtual void Start() override;
 	virtual void Update() override;

@@ -27,8 +27,6 @@ void PhysicsObject::UpdatePhysics()
 	position.y += displacement.y;
 }
 
-
-
 void PhysicsObject::SetForce(const Vector2& forceVector)
 {
 	forceMagnitude = forceVector.Magnitude();
