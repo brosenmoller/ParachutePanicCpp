@@ -33,20 +33,4 @@ public:
 	void Render();
 
 	std::string GetName() { return name; }
-
-// Physics System
-private:
-	Vector2 velocity;
-	float forceMagnitude;
-	Vector2 forceDirection;
-	float gravityForce;
-
-protected:
-	float mass;
-	void UpdatePhysics();
-	void InitializePhysics();
-
-public:
-	void SetForce(const Vector2& forceVector);
-	void AddForce(const Vector2& forceVector);
 };

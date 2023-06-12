@@ -139,6 +139,7 @@
     <ClCompile Include="src\GameObjects\Player.cpp" />
     <ClCompile Include="src\LogManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\PhysicsObject.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\Vector2.cpp" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="src\GameObjects\EnemySpawner.hpp" />
     <ClInclude Include="src\GameObjects\Player.hpp" />
     <ClInclude Include="src\LogManager.hpp" />
+    <ClInclude Include="src\PhysicsObject.hpp" />
     <ClInclude Include="src\SceneManager.hpp" />
     <ClInclude Include="src\Vector2.hpp" />
   </ItemGroup>

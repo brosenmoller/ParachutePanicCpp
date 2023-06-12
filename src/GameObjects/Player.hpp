@@ -1,16 +1,16 @@
 #pragma once
 
-#include "../GameObject.hpp"
+#include "../PhysicsObject.hpp"
 
-class Player : public GameObject
+class Player : public PhysicsObject
 {
 public:
-	using GameObject::GameObject;
+	using PhysicsObject::PhysicsObject;
 
 	virtual void Start() override;
 	virtual void Update() override;
 private:
-	int speed;
+	float power;
 	int timePerScorePoint;
 	sf::Clock scoreClock;
 	sf::Clock animationClock;
