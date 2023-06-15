@@ -14,7 +14,7 @@ class SceneManager
 {
 public:
 	SceneManager(sf::RenderWindow* window, GameManager* gameManager, sf::Font* mainFont);
-	~SceneManager() {}
+	~SceneManager();
 
 	void OnUpdate();
 	void OnRender();

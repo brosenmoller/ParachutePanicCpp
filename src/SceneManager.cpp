@@ -48,6 +48,28 @@ SceneManager::SceneManager(sf::RenderWindow* window, GameManager* gameManager, s
 	UnInitializedGameObjects.push_back(new EnemySpawner("EnemySpawner", "assets/Cars.png", window, this, Vector2(-100, -100)));
 }
 
+SceneManager::~SceneManager()
+{
+	delete gameOverText;
+	delete scoreText;
+
+	for (GameObject* gameObject : UnInitializedGameObjects)
+	{
+		delete gameObject;
+	}
+	UnInitializedGameObjects.clear();
+	for (GameObject* gameObject : GameObjectsToBeRemoved)
+	{
+		delete gameObject;
+	}
+	GameObjectsToBeRemoved.clear();
+	for (GameObject* gameObject : ActiveGameObjects)
+	{
+		delete gameObject;
+	}
+	ActiveGameObjects.clear();
+}
+
 void SceneManager::OnUpdate()
 {
 	// --- Initialising GameObjects ---
